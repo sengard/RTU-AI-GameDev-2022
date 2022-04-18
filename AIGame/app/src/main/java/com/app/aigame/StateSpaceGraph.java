@@ -47,28 +47,21 @@ public class StateSpaceGraph {
     static void generatePossibilitiesRecursive(HashMap<Integer, ArrayList<ArrayList<Integer>>> map, int depth){
         ArrayList<ArrayList<Integer>> parentList;
         //if (map.get(depth).isEmpty()) return;
-
         for (int i = depth == 0 ? 0 : 1 ; i < map.get(depth).size(); i++){
-
             int total = 0;
             for (int j = 0; j < map.get(depth).get(i).size(); j++){
                 total+=map.get(depth).get(i).get(j);
             }
             if (total==0 && i==map.get(depth).size()-1) return;
             ArrayList<Integer> newList = new ArrayList<>(map.get(depth).get(i));
-
             parentList = generateList(newList, total);
-
             ArrayList<ArrayList<Integer>> finalList;
-
-
             if (map.get(depth+1)==null){
                 finalList = parentList;
             }else{
                 ArrayList<ArrayList<Integer>> list = new ArrayList<>(map.get(depth+1));
                 finalList = joinLists(list, parentList);
             }
-
             map.put(depth+1, finalList);
         }
         generatePossibilitiesRecursive(map, depth+1);

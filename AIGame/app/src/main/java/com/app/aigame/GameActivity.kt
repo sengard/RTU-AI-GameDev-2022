@@ -114,7 +114,6 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun draw(){
-
         for (i in arr.indices){
             for (j in 0 until arr[i]){
                 if(i==0){
@@ -142,9 +141,7 @@ class GameActivity : AppCompatActivity() {
                     ll4.addView(img)
                 }
             }
-
         }
-
     }
 
     fun checkWinner(){

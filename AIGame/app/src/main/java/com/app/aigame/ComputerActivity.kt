@@ -22,35 +22,39 @@ class ComputerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_computer)
 
-        //Initialize Array
-        arr = intArrayOf(3,5,2,4)
-
         //Initialize Current Player
         CP = intent.getStringExtra("cp").toString()
 
+        init()
+
+        btnPlayAgain!!.setOnClickListener {
+            init()
+            currentPlayer2.text = CP
+            btnPlayAgain!!.visibility = View.GONE
+            btnFinishMove2!!.visibility = View.VISIBLE
+        }
+
+
+    }
+
+    fun init(){
+        //Initialize Array
+        arr = intArrayOf(3,5,2,4)
         //Set The Image Gravity to Center Horizontal
         setLayoutGravity()
-
         //Draw`s the circles
         draw()
-
         //Set All the Click Listeners
         setClickListeners()
-
         //Finish Game Button
-
         if (CP=="Computer"){
             updateCurrentPlayer()
             callComputer()
             callPlayer()
         }
-
         if (CP=="Player"){
             callPlayer()
         }
-
-
-
     }
 
     fun callPlayer(){
@@ -156,16 +160,32 @@ class ComputerActivity : AppCompatActivity() {
         var number = -999
         for (i in 0 until  arr.size){
             if (arr[i]!=0){
-                for(j in 0..arr[i]){
-                    if (j>number && arr[i]-j==0){
-                        number = j;
-                        idx = i
-                        return intArrayOf(idx, number)
-                    }
-                }
+//                for(j in 0..arr[i]){
+//                    if (j>number && arr[i]-j==0){
+//                        number = j;
+//                        idx = i
+//                        return intArrayOf(idx, number)
+//                    }
+//                }
+                return findMinimum();
             }
         }
         return intArrayOf(0,0)
+    }
+
+    fun findMinimum(): IntArray{
+        var res = 20;
+        var idx = 0;
+        for (i in 0 until arr.size){
+            if (arr[i]!=0) {
+                res = Math.min(res, arr[i]);
+            }
+        }
+
+        for (i in 0 until arr.size){
+            if (arr[i] == res) idx = i;
+        }
+        return intArrayOf(idx, res);
     }
 
     fun removeViews(){
@@ -223,6 +243,7 @@ class ComputerActivity : AppCompatActivity() {
                 currentPlayer2.text = "Player wins"
             }
             btnFinishMove2!!.visibility = View.GONE
+            btnPlayAgain!!.visibility = View.VISIBLE
         }
     }
 

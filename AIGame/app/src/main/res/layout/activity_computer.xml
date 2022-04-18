@@ -186,6 +186,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
+            <LinearLayout
+                android:id="@+id/btnPlayAgain"
+                android:gravity="center"
+                android:visibility="gone"
+                android:background="@drawable/btn1"
+                android:layout_marginEnd="40dp"
+                android:layout_marginStart="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:text="Play Again"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </RelativeLayout>

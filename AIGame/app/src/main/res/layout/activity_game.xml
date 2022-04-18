@@ -179,7 +179,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/btnPlayAgain"
                 android:gravity="center"
                 android:visibility="gone"
                 android:background="@drawable/btn1"
